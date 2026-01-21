@@ -3,8 +3,7 @@ on:
   push:
   workflow_dispatch:
   schedule:
-    ## Every 10 minutes
-    - cron: '*/10 * * * *' 
+    - cron: '25 * * * *' 
 
 
 
