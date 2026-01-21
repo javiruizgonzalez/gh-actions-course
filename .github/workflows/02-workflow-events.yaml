@@ -3,9 +3,10 @@ on:
   push
 
 jobs:
-  name: echo
-  runs-on: ubuntu-latest
-  steps:
-    - name: Show the trigger
-      run: |
-        echo "This workflow was triggered by the event: ${{ github.event_name }}"
+  echo:
+    name: echo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show the trigger
+        run: |
+          echo "This workflow was triggered by the event: ${{ github.event_name }}"
