@@ -1,0 +1,16 @@
+name: 04 - Using Actions
+on:
+  push:
+
+jobs:
+    build:
+        name: Build
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout repository
+            uses: actions/checkout@v3
+
+          - name: Printing Folders
+            run: |
+                echo "Listing the repository folders:"
+                tree -L 3
