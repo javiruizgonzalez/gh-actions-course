@@ -24,7 +24,7 @@ jobs:
           echo "Run number: ${{ github.run_number }}"
       - name: Retrieve Variable
         run: |
-          echo "The value of MY_VAR is: ${{ env.MY_VAR }}"
+          echo "The value of MY_VAR is: ${{ vars.MY_VAR }}"
       - name: Display Debug Input
         run: |
           echo "Debug input value: ${{ inputs.debug }}"
