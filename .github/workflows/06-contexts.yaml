@@ -1,8 +1,12 @@
 name: 06 - Contexts
-run-name: My custom workflow run name - ${{ runner.os }}
+run-name: 06 - Contexts | DEBUG - ${{ inputs.debug }}
 on:
   push:
   workflow_dispatch:
+    inputs:
+      debug:
+        type: boolean
+        default: false
 
 jobs:
   echo-data:
@@ -21,3 +25,6 @@ jobs:
       - name: Retrieve Variable
         run: |
           echo "The value of MY_VAR is: ${{ env.MY_VAR }}"
+      - name: Display Debug Input
+        run: |
+          echo "Debug input value: ${{ inputs.debug }}"
