@@ -21,7 +21,7 @@ jobs:
         run: echo "GITHUB_OUTPUT is located at $GITHUB_OUTPUT"
       - name: build
         id: build
-        run: echo "status=${{ inputs.build-status }}" >> $GITHUB_OUTPUT
+        run: echo "status=${{ inputs.build-status }}" >> "$GITHUB_OUTPUT"
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
