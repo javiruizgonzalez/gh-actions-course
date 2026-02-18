@@ -15,11 +15,12 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     outputs:
-      build-status: ${{ steps.build.outputs.build-status }}
+      build-status: ${{ steps.build.outputs.status }}
     steps:
       - name: Print GITHUB_OUTPUT path
         run: echo "GITHUB_OUTPUT is located at $GITHUB_OUTPUT"
       - name: build
+        id: build
         run: echo "status=${{ inputs.build-status }}" >> $GITHUB_OUTPUT
   deploy:
     name: Deploy
