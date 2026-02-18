@@ -5,6 +5,7 @@ on:
     inputs:
       build-status:
         type: choice
+        required: true
         options:
           - success
           - failure
