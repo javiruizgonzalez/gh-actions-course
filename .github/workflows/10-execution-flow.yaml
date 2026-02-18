@@ -1,6 +1,7 @@
 name: 10 - Controlling the Execution Flow
 
 on:
+  push:
   workflow_dispatch:
     inputs:
       pass-unit-tests:
