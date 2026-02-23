@@ -29,6 +29,9 @@ jobs:
           echo "value2=This is output value 2" >> "$GITHUB_OUTPUT"
           echo "Print value of GITHUB_OUTPUT file:"
           cat "$GITHUB_OUTPUT"
+      - name: Step with mistake
+        if: ${{ steps.build.outputs.mistake == 'true' }}
+        run: |
           echo "mistake=true" > "$GITHUB_OUTPUT"
           echo "Print value of GITHUB_OUTPUT file:"
           cat "$GITHUB_OUTPUT"
