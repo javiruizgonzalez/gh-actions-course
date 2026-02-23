@@ -16,12 +16,22 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       build-status: ${{ steps.build.outputs.status }}
+      output1: ${{ steps.build.outputs.value1 }}
+      output2: ${{ steps.build.outputs.value2 }}
     steps:
       - name: Print GITHUB_OUTPUT path
         run: echo "GITHUB_OUTPUT is located at $GITHUB_OUTPUT"
       - name: build
         id: build
-        run: echo "status=${{ inputs.build-status }}" >> "$GITHUB_OUTPUT"
+        run: |
+          echo "status=${{ inputs.build-status }}" >> "$GITHUB_OUTPUT"
+          echo "value1=This is output value 1" >> "$GITHUB_OUTPUT"
+          echo "value2=This is output value 2" >> "$GITHUB_OUTPUT"
+          echo "Print value of GITHUB_OUTPUT file:"
+          cat "$GITHUB_OUTPUT"
+          echo "mistake=true" > "$GITHUB_OUTPUT"
+          echo "Print value of GITHUB_OUTPUT file:"
+          cat "$GITHUB_OUTPUT"
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
