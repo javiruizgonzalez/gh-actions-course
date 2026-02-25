@@ -7,11 +7,26 @@ jobs:
   backwards-compatibility:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         node-version: [18.x, 20.x, 21.x]
         operating-system: [ubuntu-latest, windows-latest]
+        include:
+          - node-version: 16.x
+            operating-system: ubuntu-latest
+          - node-version: 21.x
+            operating-system: ubuntu-latest
+            tag: "Experimental"
     steps:
       - name: Setup node
         run: |
           echo "Running tests on OS: ${{ matrix.operating-system }} with Node.js version: ${{ matrix.node-version }}"
-        
+      - name: Perform some tests
+        run: |
+          sleep 5
+      - name: Fail if experimental
+        if: matrix.tag == 'Experimental'
+        run: exit 1
+      - name: Upload test results
+        run: |
+          echo "Uploading test results"
