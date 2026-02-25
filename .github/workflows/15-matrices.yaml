@@ -41,6 +41,7 @@ jobs:
         include:
           - color: red
             shape: triangle
+          - opacity: 50
     steps:
       - name: Dummy step
         run: |
