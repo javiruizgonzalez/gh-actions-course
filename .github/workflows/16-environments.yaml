@@ -8,11 +8,31 @@ on:
         required: true
         default: staging
 jobs:
-  echo:
-    name: Echo Environment | env - ${{ inputs.target-env }}
+  deploy-staging:
+    name: deploy-staging
+    environment:
+      name: staging
     runs-on: ubuntu-latest
+    steps:
+      - name: Echo var
+        run: echo "Deploying to staging"
+  e2e-tests:
+    name: e2e-tests
+    runs-on: ubuntu-latest
+    needs: deploy-staging
+    steps:
+      - name: E2E tests
+        run: echo "Running E2E"
+  deploy-prod:
+    # It should have the environment parameter set to prod.
+    name: deploy-prod
+    runs-on: ubuntu-latest
+    environment:
+      name: prod
+    needs: e2e-tests
     env:
       my-env-value: ${{ vars.MY_ENV_VALUE || 'default value' }}
     steps:
-      - name: Print Target Environment
-        run: echo "Target environment is ${{ inputs.target-env }} and my-env-value is ${{ env.my-env-value }}"
+      - name: Echo var
+        run: |
+          echo "deploying to prod with my-env-value: ${{ env.my-env-value }}"
