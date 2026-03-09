@@ -8,12 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Check for dependency updates
-        uses: actions/js-dependency-update@v1
-        with:
-          node-version: '20'
-
-      - name: Run custom action to update NPM dependencies
         uses: ./.github/actions/js-dependency-update
