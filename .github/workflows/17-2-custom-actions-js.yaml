@@ -1,0 +1,19 @@
+name: 17-2-custom-actions
+on:
+  workflow_dispatch:
+run-name: 17 - 2 - Custom Actions - JS
+
+jobs:
+  dependency-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Check for dependency updates
+        uses: actions/js-dependency-update@v1
+        with:
+          node-version: '20'
+
+      - name: Run custom action to update NPM dependencies
+        uses: ./.github/actions/js-dependency-update
