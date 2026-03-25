@@ -13,8 +13,10 @@ def ping_url(url, delay, max_trials):
             response = requests.get(url, timeout=10)
             if response.status_code == 200:
                 return True
-        except requests.RequestException:
-            pass
+            else:
+                print(f"Attempt {trials}: Received status code {response.status_code}")
+        except requests.RequestException as e:
+            print(f"Attempt {trials}: Error occurred - {e}")
 
         if trials < max_trials:
             time.sleep(delay)
