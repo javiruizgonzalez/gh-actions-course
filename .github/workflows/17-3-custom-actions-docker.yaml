@@ -5,8 +5,18 @@ on:
     inputs:
       url:
         description: URL to ping
-        type: string
-        default: 'https://www.google.com'
+        type: choice
+        options:
+          - https://www.google.com
+          - https://www.nonexistentwebsite.com
+      max_trials:
+        description: Maximum number of trials
+        type: number
+        default: 10
+      delay:
+        description: Delay between trials in seconds
+        type: number
+        default: 5
 
 jobs:
   ping-url:
