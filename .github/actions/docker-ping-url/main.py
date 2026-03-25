@@ -8,12 +8,16 @@ def ping_url(url, delay, max_trials):
     trials = 0
 
     while trials < max_trials:
-        response = requests.get(url, timeout=10)
-        if response.status_code == 200:
-            return True
-
-        time.sleep(delay)
         trials += 1
+        try:
+            response = requests.get(url, timeout=10)
+            if response.status_code == 200:
+                return True
+        except requests.RequestException:
+            pass
+
+        if trials < max_trials:
+            time.sleep(delay)
 
     return False
 
