@@ -30,6 +30,8 @@ def run():
     result = ping_url(url=url, delay=delay, max_trials=max_trials)
     if result is False:
         raise Exception("Could not get a 200 response within the maximum number of trials")
+    else:
+        print("Successfully got a 200 response from the URL")
 
 
 if __name__ == "__main__":
